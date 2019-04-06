@@ -13,11 +13,49 @@ package leetcode_1013;
  * **/
 public class Solution {
 	public boolean canThreePartsEqualSum(int[] A) {
-        return true;
+		int sum = 0;
+		for(int i = 0; i < A.length; i++) {
+			sum = sum + A[i];
+		}
+		if(sum % 3 != 0) {
+			return false;
+		}
+		sum = sum / 3;
+		int s = 0, index = 0;
+		while(index < A.length) {
+			s = s + A[index];
+			index++;
+			if(s == sum) {
+				break;
+			}
+		}
+		if(index >= A.length - 1) {
+			return false;
+		}
+		s = 0;
+		while(index < A.length) {
+			s = s + A[index];
+			index++;
+			if(s == sum) {
+				break;
+			}
+		}
+		if(index > A.length - 1) {
+			return false;
+		}
+		s = 0;
+		while(index < A.length) {
+			s = s + A[index];
+			index++;
+		}
+		if(s == sum) {
+			return true;
+		}
+        return false;
     }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] A = new int[] {0,2,1,-6,6,-7,9,1,2,0,1};
+		int[] A = new int[] {0,0,0,0};
 		System.out.println(new Solution().canThreePartsEqualSum(A));
 	}
 }
